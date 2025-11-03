@@ -16,6 +16,7 @@
 #include "services/gatt/ble_svc_gatt.h"
 #include "host/ble_uuid.h"
 #include "ble_ota.h"
+#include "ble_ota_integration.h"
 #include "freertos/semphr.h"
 #if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 0, 0)
 #include "esp_nimble_hci.h"
@@ -906,8 +907,8 @@ ble_ota_gatt_svr_init(void)
 {
     int rc;
 
-    ble_svc_gap_init();
-    ble_svc_gatt_init();
+    // Don't call ble_svc_gap_init() and ble_svc_gatt_init() here
+    // They should already be initialized by the host application
 
     rc = ble_gatts_count_cfg(ota_gatt_db);
     if (rc != 0) {
@@ -920,6 +921,25 @@ ble_ota_gatt_svr_init(void)
     }
 
     return 0;
+}
+
+// Integration API for existing NimBLE stacks
+esp_err_t ble_ota_register_services(void)
+{
+    int rc = ble_ota_gatt_svr_init();
+    if (rc != 0) {
+        ESP_LOGE(TAG, "Failed to register OTA GATT services: %d", rc);
+        return ESP_FAIL;
+    }
+    
+    ESP_LOGI(TAG, "BLE OTA GATT services registered successfully");
+    return ESP_OK;
+}
+
+void ble_ota_set_connection_handle(uint16_t conn_handle)
+{
+    connection_handle = conn_handle;
+    ESP_LOGI(TAG, "OTA connection handle set: %d", conn_handle);
 }
 
 static void

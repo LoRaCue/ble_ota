@@ -10,7 +10,6 @@
 #include "ble_ota.h"
 #include "ble_ota_integration.h"
 #include "console/console.h"
-#include "freertos/semphr.h"
 #include "host/ble_hs.h"
 #include "host/ble_uuid.h"
 #include "host/util/util.h"
@@ -18,6 +17,7 @@
 #include "nimble/nimble_port_freertos.h"
 #include "services/gap/ble_svc_gap.h"
 #include "services/gatt/ble_svc_gatt.h"
+#include "freertos/semphr.h"
 #if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 0, 0)
 #include "esp_nimble_hci.h"
 

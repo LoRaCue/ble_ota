@@ -9,6 +9,11 @@
 #ifndef _BLE_OTA_H_
 #define _BLE_OTA_H_
 
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include "esp_err.h"
+
 #ifdef CONFIG_PRE_ENC_OTA
 #include "esp_encrypted_img.h"
 #endif

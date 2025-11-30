@@ -27,24 +27,18 @@ extern const esp_ble_ota_scheme_t esp_ble_ota_scheme_ble;
 
 /* This scheme specific event handler is to be used when application
  * doesn't require BT and BLE after ota has finished */
-#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BTDM {    \
-    .event_cb  = esp_ble_ota_scheme_ble_event_cb_free_btdm, \
-    .user_data = NULL                                     \
-}
+#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BTDM                                                                 \
+    {.event_cb = esp_ble_ota_scheme_ble_event_cb_free_btdm, .user_data = NULL}
 
 /* This scheme specific event handler is to be used when application
  * doesn't require BLE to be active after ota has finished */
-#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BLE {    \
-    .event_cb  = esp_ble_ota_scheme_ble_event_cb_free_ble, \
-    .user_data = NULL                                    \
-}
+#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BLE                                                                  \
+    {.event_cb = esp_ble_ota_scheme_ble_event_cb_free_ble, .user_data = NULL}
 
 /* This scheme specific event handler is to be used when application
  * doesn't require BT to be active after ota has finished */
-#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BT {    \
-    .event_cb  = esp_ble_ota_scheme_ble_event_cb_free_bt, \
-    .user_data = NULL                                   \
-}
+#define ESP_BLE_OTA_SCHEME_BLE_EVENT_HANDLER_FREE_BT                                                                   \
+    {.event_cb = esp_ble_ota_scheme_ble_event_cb_free_bt, .user_data = NULL}
 
 void esp_ble_ota_scheme_ble_event_cb_free_btdm(void *user_data, esp_ble_ota_cb_event_t event, void *event_data);
 void esp_ble_ota_scheme_ble_event_cb_free_ble(void *user_data, esp_ble_ota_cb_event_t event, void *event_data);

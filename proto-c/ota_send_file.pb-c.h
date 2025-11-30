@@ -24,86 +24,72 @@ typedef struct _CmdFinishOTA CmdFinishOTA;
 typedef struct _RespFinishOTA RespFinishOTA;
 typedef struct _SendFilePayload SendFilePayload;
 
-
 /* --- enums --- */
 
 typedef enum _SendFileMsgType {
-    SEND_FILE_MSG_TYPE__TypeReserved = 0,
-    SEND_FILE_MSG_TYPE__TypeCmdSendFile = 1,
-    SEND_FILE_MSG_TYPE__TypeRespSendFile = 2,
-    SEND_FILE_MSG_TYPE__TypeCmdStartOTA = 3,
-    SEND_FILE_MSG_TYPE__TypeRespStartOTA = 4,
-    SEND_FILE_MSG_TYPE__TypeCmdFinishOTA = 5,
-    SEND_FILE_MSG_TYPE__TypeRespFinishOTA = 6
-                                            PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SEND_FILE_MSG_TYPE)
+    SEND_FILE_MSG_TYPE__TypeReserved      = 0,
+    SEND_FILE_MSG_TYPE__TypeCmdSendFile   = 1,
+    SEND_FILE_MSG_TYPE__TypeRespSendFile  = 2,
+    SEND_FILE_MSG_TYPE__TypeCmdStartOTA   = 3,
+    SEND_FILE_MSG_TYPE__TypeRespStartOTA  = 4,
+    SEND_FILE_MSG_TYPE__TypeCmdFinishOTA  = 5,
+    SEND_FILE_MSG_TYPE__TypeRespFinishOTA = 6 PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SEND_FILE_MSG_TYPE)
 } SendFileMsgType;
 
 /* --- messages --- */
 
-struct  _CmdSendFile {
+struct _CmdSendFile {
     ProtobufCMessage base;
     ProtobufCBinaryData data;
 };
-#define CMD_SEND_FILE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&cmd_send_file__descriptor) \
-    , {0,NULL} }
+#define CMD_SEND_FILE__INIT                                                                                            \
+    {                                                                                                                  \
+        PROTOBUF_C_MESSAGE_INIT(&cmd_send_file__descriptor)                                                            \
+        ,                                                                                                              \
+        {                                                                                                              \
+            0, NULL                                                                                                    \
+        }                                                                                                              \
+    }
 
-
-struct  _RespSendFile {
+struct _RespSendFile {
     ProtobufCMessage base;
 };
-#define RESP_SEND_FILE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&resp_send_file__descriptor) \
-     }
+#define RESP_SEND_FILE__INIT {PROTOBUF_C_MESSAGE_INIT(&resp_send_file__descriptor)}
 
-
-struct  _CmdStartOTA {
+struct _CmdStartOTA {
     ProtobufCMessage base;
     uint64_t file_size;
     uint64_t block_size;
     char *partition_name;
 };
-#define CMD_START_OTA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&cmd_start_ota__descriptor) \
-    , 0, 0, (char *)protobuf_c_empty_string }
+#define CMD_START_OTA__INIT {PROTOBUF_C_MESSAGE_INIT(&cmd_start_ota__descriptor), 0, 0, (char *)protobuf_c_empty_string}
 
-
-struct  _RespStartOTA {
+struct _RespStartOTA {
     ProtobufCMessage base;
 };
-#define RESP_START_OTA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&resp_start_ota__descriptor) \
-     }
+#define RESP_START_OTA__INIT {PROTOBUF_C_MESSAGE_INIT(&resp_start_ota__descriptor)}
 
-
-struct  _CmdFinishOTA {
+struct _CmdFinishOTA {
     ProtobufCMessage base;
 };
-#define CMD_FINISH_OTA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&cmd_finish_ota__descriptor) \
-     }
+#define CMD_FINISH_OTA__INIT {PROTOBUF_C_MESSAGE_INIT(&cmd_finish_ota__descriptor)}
 
-
-struct  _RespFinishOTA {
+struct _RespFinishOTA {
     ProtobufCMessage base;
 };
-#define RESP_FINISH_OTA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&resp_finish_ota__descriptor) \
-     }
-
+#define RESP_FINISH_OTA__INIT {PROTOBUF_C_MESSAGE_INIT(&resp_finish_ota__descriptor)}
 
 typedef enum {
-    SEND_FILE_PAYLOAD__PAYLOAD__NOT_SET = 0,
-    SEND_FILE_PAYLOAD__PAYLOAD_CMD_SEND_FILE = 10,
-    SEND_FILE_PAYLOAD__PAYLOAD_RESP_SEND_FILE = 11,
-    SEND_FILE_PAYLOAD__PAYLOAD_CMD_START_OTA = 12,
-    SEND_FILE_PAYLOAD__PAYLOAD_RESP_START_OTA = 13,
-    SEND_FILE_PAYLOAD__PAYLOAD_CMD_FINISH_OTA = 14,
-    SEND_FILE_PAYLOAD__PAYLOAD_RESP_FINISH_OTA = 15
-            PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SEND_FILE_PAYLOAD__PAYLOAD)
+    SEND_FILE_PAYLOAD__PAYLOAD__NOT_SET        = 0,
+    SEND_FILE_PAYLOAD__PAYLOAD_CMD_SEND_FILE   = 10,
+    SEND_FILE_PAYLOAD__PAYLOAD_RESP_SEND_FILE  = 11,
+    SEND_FILE_PAYLOAD__PAYLOAD_CMD_START_OTA   = 12,
+    SEND_FILE_PAYLOAD__PAYLOAD_RESP_START_OTA  = 13,
+    SEND_FILE_PAYLOAD__PAYLOAD_CMD_FINISH_OTA  = 14,
+    SEND_FILE_PAYLOAD__PAYLOAD_RESP_FINISH_OTA = 15 PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SEND_FILE_PAYLOAD__PAYLOAD)
 } SendFilePayload__PayloadCase;
 
-struct  _SendFilePayload {
+struct _SendFilePayload {
     ProtobufCMessage base;
     SendFileMsgType msg;
     Status status;
@@ -117,174 +103,77 @@ struct  _SendFilePayload {
         RespFinishOTA *resp_finish_ota;
     };
 };
-#define SEND_FILE_PAYLOAD__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&send_file_payload__descriptor) \
-    , SEND_FILE_MSG_TYPE__TypeReserved, STATUS__Success, SEND_FILE_PAYLOAD__PAYLOAD__NOT_SET, {0} }
-
+#define SEND_FILE_PAYLOAD__INIT                                                                                        \
+    {PROTOBUF_C_MESSAGE_INIT(&send_file_payload__descriptor),                                                          \
+     SEND_FILE_MSG_TYPE__TypeReserved,                                                                                 \
+     STATUS__Success,                                                                                                  \
+     SEND_FILE_PAYLOAD__PAYLOAD__NOT_SET,                                                                              \
+     {0}}
 
 /* CmdSendFile methods */
-void   cmd_send_file__init
-(CmdSendFile         *message);
-size_t cmd_send_file__get_packed_size
-(const CmdSendFile   *message);
-size_t cmd_send_file__pack
-(const CmdSendFile   *message,
- uint8_t             *out);
-size_t cmd_send_file__pack_to_buffer
-(const CmdSendFile   *message,
- ProtobufCBuffer     *buffer);
-CmdSendFile *
-cmd_send_file__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   cmd_send_file__free_unpacked
-(CmdSendFile *message,
- ProtobufCAllocator *allocator);
+void cmd_send_file__init(CmdSendFile *message);
+size_t cmd_send_file__get_packed_size(const CmdSendFile *message);
+size_t cmd_send_file__pack(const CmdSendFile *message, uint8_t *out);
+size_t cmd_send_file__pack_to_buffer(const CmdSendFile *message, ProtobufCBuffer *buffer);
+CmdSendFile *cmd_send_file__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void cmd_send_file__free_unpacked(CmdSendFile *message, ProtobufCAllocator *allocator);
 /* RespSendFile methods */
-void   resp_send_file__init
-(RespSendFile         *message);
-size_t resp_send_file__get_packed_size
-(const RespSendFile   *message);
-size_t resp_send_file__pack
-(const RespSendFile   *message,
- uint8_t             *out);
-size_t resp_send_file__pack_to_buffer
-(const RespSendFile   *message,
- ProtobufCBuffer     *buffer);
-RespSendFile *
-resp_send_file__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   resp_send_file__free_unpacked
-(RespSendFile *message,
- ProtobufCAllocator *allocator);
+void resp_send_file__init(RespSendFile *message);
+size_t resp_send_file__get_packed_size(const RespSendFile *message);
+size_t resp_send_file__pack(const RespSendFile *message, uint8_t *out);
+size_t resp_send_file__pack_to_buffer(const RespSendFile *message, ProtobufCBuffer *buffer);
+RespSendFile *resp_send_file__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void resp_send_file__free_unpacked(RespSendFile *message, ProtobufCAllocator *allocator);
 /* CmdStartOTA methods */
-void   cmd_start_ota__init
-(CmdStartOTA         *message);
-size_t cmd_start_ota__get_packed_size
-(const CmdStartOTA   *message);
-size_t cmd_start_ota__pack
-(const CmdStartOTA   *message,
- uint8_t             *out);
-size_t cmd_start_ota__pack_to_buffer
-(const CmdStartOTA   *message,
- ProtobufCBuffer     *buffer);
-CmdStartOTA *
-cmd_start_ota__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   cmd_start_ota__free_unpacked
-(CmdStartOTA *message,
- ProtobufCAllocator *allocator);
+void cmd_start_ota__init(CmdStartOTA *message);
+size_t cmd_start_ota__get_packed_size(const CmdStartOTA *message);
+size_t cmd_start_ota__pack(const CmdStartOTA *message, uint8_t *out);
+size_t cmd_start_ota__pack_to_buffer(const CmdStartOTA *message, ProtobufCBuffer *buffer);
+CmdStartOTA *cmd_start_ota__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void cmd_start_ota__free_unpacked(CmdStartOTA *message, ProtobufCAllocator *allocator);
 /* RespStartOTA methods */
-void   resp_start_ota__init
-(RespStartOTA         *message);
-size_t resp_start_ota__get_packed_size
-(const RespStartOTA   *message);
-size_t resp_start_ota__pack
-(const RespStartOTA   *message,
- uint8_t             *out);
-size_t resp_start_ota__pack_to_buffer
-(const RespStartOTA   *message,
- ProtobufCBuffer     *buffer);
-RespStartOTA *
-resp_start_ota__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   resp_start_ota__free_unpacked
-(RespStartOTA *message,
- ProtobufCAllocator *allocator);
+void resp_start_ota__init(RespStartOTA *message);
+size_t resp_start_ota__get_packed_size(const RespStartOTA *message);
+size_t resp_start_ota__pack(const RespStartOTA *message, uint8_t *out);
+size_t resp_start_ota__pack_to_buffer(const RespStartOTA *message, ProtobufCBuffer *buffer);
+RespStartOTA *resp_start_ota__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void resp_start_ota__free_unpacked(RespStartOTA *message, ProtobufCAllocator *allocator);
 /* CmdFinishOTA methods */
-void   cmd_finish_ota__init
-(CmdFinishOTA         *message);
-size_t cmd_finish_ota__get_packed_size
-(const CmdFinishOTA   *message);
-size_t cmd_finish_ota__pack
-(const CmdFinishOTA   *message,
- uint8_t             *out);
-size_t cmd_finish_ota__pack_to_buffer
-(const CmdFinishOTA   *message,
- ProtobufCBuffer     *buffer);
-CmdFinishOTA *
-cmd_finish_ota__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   cmd_finish_ota__free_unpacked
-(CmdFinishOTA *message,
- ProtobufCAllocator *allocator);
+void cmd_finish_ota__init(CmdFinishOTA *message);
+size_t cmd_finish_ota__get_packed_size(const CmdFinishOTA *message);
+size_t cmd_finish_ota__pack(const CmdFinishOTA *message, uint8_t *out);
+size_t cmd_finish_ota__pack_to_buffer(const CmdFinishOTA *message, ProtobufCBuffer *buffer);
+CmdFinishOTA *cmd_finish_ota__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void cmd_finish_ota__free_unpacked(CmdFinishOTA *message, ProtobufCAllocator *allocator);
 /* RespFinishOTA methods */
-void   resp_finish_ota__init
-(RespFinishOTA         *message);
-size_t resp_finish_ota__get_packed_size
-(const RespFinishOTA   *message);
-size_t resp_finish_ota__pack
-(const RespFinishOTA   *message,
- uint8_t             *out);
-size_t resp_finish_ota__pack_to_buffer
-(const RespFinishOTA   *message,
- ProtobufCBuffer     *buffer);
-RespFinishOTA *
-resp_finish_ota__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   resp_finish_ota__free_unpacked
-(RespFinishOTA *message,
- ProtobufCAllocator *allocator);
+void resp_finish_ota__init(RespFinishOTA *message);
+size_t resp_finish_ota__get_packed_size(const RespFinishOTA *message);
+size_t resp_finish_ota__pack(const RespFinishOTA *message, uint8_t *out);
+size_t resp_finish_ota__pack_to_buffer(const RespFinishOTA *message, ProtobufCBuffer *buffer);
+RespFinishOTA *resp_finish_ota__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void resp_finish_ota__free_unpacked(RespFinishOTA *message, ProtobufCAllocator *allocator);
 /* SendFilePayload methods */
-void   send_file_payload__init
-(SendFilePayload         *message);
-size_t send_file_payload__get_packed_size
-(const SendFilePayload   *message);
-size_t send_file_payload__pack
-(const SendFilePayload   *message,
- uint8_t             *out);
-size_t send_file_payload__pack_to_buffer
-(const SendFilePayload   *message,
- ProtobufCBuffer     *buffer);
-SendFilePayload *
-send_file_payload__unpack
-(ProtobufCAllocator  *allocator,
- size_t               len,
- const uint8_t       *data);
-void   send_file_payload__free_unpacked
-(SendFilePayload *message,
- ProtobufCAllocator *allocator);
+void send_file_payload__init(SendFilePayload *message);
+size_t send_file_payload__get_packed_size(const SendFilePayload *message);
+size_t send_file_payload__pack(const SendFilePayload *message, uint8_t *out);
+size_t send_file_payload__pack_to_buffer(const SendFilePayload *message, ProtobufCBuffer *buffer);
+SendFilePayload *send_file_payload__unpack(ProtobufCAllocator *allocator, size_t len, const uint8_t *data);
+void send_file_payload__free_unpacked(SendFilePayload *message, ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*CmdSendFile_Closure)
-(const CmdSendFile *message,
- void *closure_data);
-typedef void (*RespSendFile_Closure)
-(const RespSendFile *message,
- void *closure_data);
-typedef void (*CmdStartOTA_Closure)
-(const CmdStartOTA *message,
- void *closure_data);
-typedef void (*RespStartOTA_Closure)
-(const RespStartOTA *message,
- void *closure_data);
-typedef void (*CmdFinishOTA_Closure)
-(const CmdFinishOTA *message,
- void *closure_data);
-typedef void (*RespFinishOTA_Closure)
-(const RespFinishOTA *message,
- void *closure_data);
-typedef void (*SendFilePayload_Closure)
-(const SendFilePayload *message,
- void *closure_data);
+typedef void (*CmdSendFile_Closure)(const CmdSendFile *message, void *closure_data);
+typedef void (*RespSendFile_Closure)(const RespSendFile *message, void *closure_data);
+typedef void (*CmdStartOTA_Closure)(const CmdStartOTA *message, void *closure_data);
+typedef void (*RespStartOTA_Closure)(const RespStartOTA *message, void *closure_data);
+typedef void (*CmdFinishOTA_Closure)(const CmdFinishOTA *message, void *closure_data);
+typedef void (*RespFinishOTA_Closure)(const RespFinishOTA *message, void *closure_data);
+typedef void (*SendFilePayload_Closure)(const SendFilePayload *message, void *closure_data);
 
 /* --- services --- */
 
-
 /* --- descriptors --- */
 
-extern const ProtobufCEnumDescriptor    send_file_msg_type__descriptor;
+extern const ProtobufCEnumDescriptor send_file_msg_type__descriptor;
 extern const ProtobufCMessageDescriptor cmd_send_file__descriptor;
 extern const ProtobufCMessageDescriptor resp_send_file__descriptor;
 extern const ProtobufCMessageDescriptor cmd_start_ota__descriptor;
@@ -295,5 +184,4 @@ extern const ProtobufCMessageDescriptor send_file_payload__descriptor;
 
 PROTOBUF_C__END_DECLS
 
-
-#endif  /* PROTOBUF_C_ota_5fsend_5ffile_2eproto__INCLUDED */
+#endif /* PROTOBUF_C_ota_5fsend_5ffile_2eproto__INCLUDED */

@@ -10,8 +10,8 @@
 #define _MANAGER_H_
 
 #ifdef CONFIG_OTA_WITH_PROTOCOMM
-#include <protocomm.h>
 #include "esp_event.h"
+#include <protocomm.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,10 +47,7 @@ typedef struct {
 /**
  * @brief Event handler can be set to none if not used
  */
-#define ESP_BLE_OTA_EVENT_HANDLER_NONE { \
-    .event_cb  = NULL,                 \
-    .user_data = NULL                  \
-}
+#define ESP_BLE_OTA_EVENT_HANDLER_NONE {.event_cb = NULL, .user_data = NULL}
 
 /**
  * @brief   Structure for specifying the ota scheme to be
@@ -241,7 +238,8 @@ void esp_ble_ota_deinit(void);
  *  - ESP_FAIL    : Failed to start ota service
  *  - ESP_ERR_INVALID_STATE : OTA manager not initialized or already started
  */
-esp_err_t esp_ble_ota_start(esp_ble_ota_security_t security, const void *esp_ble_ota_sec_params, const char *service_name, const char *service_key);
+esp_err_t esp_ble_ota_start(esp_ble_ota_security_t security, const void *esp_ble_ota_sec_params,
+                            const char *service_name, const char *service_key);
 
 /**
  * @brief   Stop ota service
@@ -331,9 +329,7 @@ esp_err_t esp_ble_ota_endpoint_create(const char *ep_name);
  *  - ESP_OK      : Success
  *  - ESP_FAIL    : Failure
  */
-esp_err_t esp_ble_ota_endpoint_register(const char *ep_name,
-                                        protocomm_req_handler_t handler,
-                                        void *user_ctx);
+esp_err_t esp_ble_ota_endpoint_register(const char *ep_name, protocomm_req_handler_t handler, void *user_ctx);
 
 /**
  * @brief   Unregister the handler for an endpoint

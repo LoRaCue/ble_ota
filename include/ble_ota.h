@@ -14,8 +14,7 @@
 #endif
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
@@ -23,23 +22,23 @@ extern "C"
  * @param buf : The pointer to the receive data buffer.
  * @param length : The length of receive data buffer.
  */
-typedef void (* esp_ble_ota_recv_fw_cb_t)(uint8_t *buf, uint32_t length);
+typedef void (*esp_ble_ota_recv_fw_cb_t)(uint8_t *buf, uint32_t length);
 
 /**
  * @brief BLE OTA callback functions struct
  */
 typedef struct esp_ble_ota_callback_funs {
-    esp_ble_ota_recv_fw_cb_t recv_fw_cb;    /*!< BLE OTA data receive callback function */
+    esp_ble_ota_recv_fw_cb_t recv_fw_cb; /*!< BLE OTA data receive callback function */
 } esp_ble_ota_callback_funs_t;
 
 /**
  * @brief BLE OTA notification flags struct
  */
 typedef struct esp_ble_ota_notification_check {
-    bool recv_fw_ntf_enable;        /*!< BLE OTA receive firmware characteristic */
-    bool process_bar_ntf_enable;    /*!< BLE OTA notify process bar characteristic */
-    bool command_ntf_enable;        /*!< BLE OTA command characteristic */
-    bool customer_ntf_enable;       /*!< BLE OTA customer data characteristic */
+    bool recv_fw_ntf_enable;     /*!< BLE OTA receive firmware characteristic */
+    bool process_bar_ntf_enable; /*!< BLE OTA notify process bar characteristic */
+    bool command_ntf_enable;     /*!< BLE OTA command characteristic */
+    bool customer_ntf_enable;    /*!< BLE OTA customer data characteristic */
 } esp_ble_ota_notification_check_t;
 
 #if CONFIG_BT_BLUEDROID_ENABLED
@@ -154,8 +153,7 @@ esp_err_t esp_ble_ota_host_init(void);
  *
  */
 #ifdef CONFIG_PRE_ENC_OTA
-esp_err_t esp_ble_ota_recv_fw_data_callback(esp_ble_ota_recv_fw_cb_t callback,
-                                            esp_decrypt_handle_t esp_decrypt_handle);
+esp_err_t esp_ble_ota_recv_fw_data_callback(esp_ble_ota_recv_fw_cb_t callback, esp_decrypt_handle_t esp_decrypt_handle);
 #else
 esp_err_t esp_ble_ota_recv_fw_data_callback(esp_ble_ota_recv_fw_cb_t callback);
 #endif
